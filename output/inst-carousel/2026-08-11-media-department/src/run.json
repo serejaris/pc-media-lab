@@ -1,0 +1,25 @@
+{
+  "run_id": "2026-08-11-media-department",
+  "skill": "inst-carousel",
+  "theme": "factory",
+  "level": 1,
+  "status": "use",
+  "title": "Как устроен медиа-отдел",
+  "platform": "instagram",
+  "size": "1080x1080",
+  "language": "ru",
+  "source_html": "src/index.html",
+  "export_tool": "skills/inst-carousel/export.py",
+  "outputs": [
+    "slide-01.png",
+    "slide-02.png",
+    "slide-03.png",
+    "slide-04.png",
+    "slide-05.png"
+  ],
+  "review": {
+    "decision": "use",
+    "notes": "Demo seed for pc-media-lab lesson template"
+  },
+  "next_action": "Students clone repo and run a new topic through the same skill"
+}

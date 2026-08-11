@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как устроен медиа-отдел</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-obsidian-canvas: #101010;
+  --color-carbon-lift: #1d1a18;
+  --color-ash-stroke: #3d3a39;
+  --color-warm-granite: #8a8380;
+  --color-pale-stone: #b8b3b0;
+  --color-bone: #eeeeee;
+  --color-chalk: #fafafa;
+  --color-signal-orange: #ee6018;
+  --color-metric-green: #a0ca92;
+  --font-geist: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-geist-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --radius-cards: 10px;
+  --radius-buttons: 3px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #000;
+  font-family: var(--font-geist);
+  font-weight: 400;
+}
+
+.slide {
+  display: none;
+  width: 1080px;
+  height: 1080px;
+  background: var(--color-obsidian-canvas);
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+  padding: 80px;
+}
+
+.slide.active { display: flex; }
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-geist-mono);
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-pale-stone);
+  margin-bottom: 32px;
+}
+
+.pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-signal-orange);
+  flex-shrink: 0;
+}
+
+.h1 {
+  font-size: 72px;
+  line-height: 1;
+  letter-spacing: -2.88px;
+  color: var(--color-bone);
+  font-weight: 400;
+  max-width: 920px;
+}
+
+.h2 {
+  font-size: 44px;
+  line-height: 1.12;
+  letter-spacing: -1.1px;
+  color: var(--color-bone);
+  font-weight: 400;
+  max-width: 900px;
+}
+
+.body {
+  font-size: 24px;
+  line-height: 1.45;
+  color: var(--color-warm-granite);
+  max-width: 820px;
+  margin-top: 28px;
+}
+
+.foot {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-geist-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-warm-granite);
+}
+
+.foot .num { color: var(--color-signal-orange); }
+
+.bone-card {
+  background: var(--color-bone);
+  color: var(--color-obsidian-canvas);
+  border-radius: var(--radius-cards);
+  padding: 40px;
+  margin-top: 40px;
+  max-width: 880px;
+}
+
+.bone-card .label {
+  font-family: var(--font-geist-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-signal-orange);
+  margin-bottom: 16px;
+}
+
+.bone-card p {
+  font-size: 28px;
+  line-height: 1.35;
+  letter-spacing: -0.4px;
+  color: #101010;
+}
+
+.steps {
+  display: grid;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.step {
+  border: 1px solid var(--color-ash-stroke);
+  border-radius: var(--radius-cards);
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.step .idx {
+  font-family: var(--font-geist-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-metric-green);
+}
+
+.step .title {
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--color-bone);
+}
+
+.step .desc {
+  grid-column: 2;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--color-warm-granite);
+  margin-top: -8px;
+}
+
+.metric-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.metric {
+  border: 1px solid #1d1a18;
+  border-radius: var(--radius-cards);
+  padding: 28px;
+  background: var(--color-carbon-lift);
+}
+
+.metric .k {
+  font-family: var(--font-geist-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-pale-stone);
+  margin-bottom: 16px;
+}
+
+.metric .v {
+  font-size: 36px;
+  line-height: 1.1;
+  letter-spacing: -1.12px;
+  color: var(--color-bone);
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 40px;
+  background: #1f1d1c;
+  color: var(--color-bone);
+  border-radius: var(--radius-buttons);
+  padding: 14px 22px;
+  font-size: 18px;
+  letter-spacing: -0.2px;
+}
+</style>
+</head>
+<body>
+
+<section class="slide active" data-slide="1">
+  <div class="eyebrow"><span class="pulse"></span>PC MEDIA LAB · L6</div>
+  <h1 class="h1">Как устроен<br>медиа-отдел</h1>
+  <p class="body">Не чат с картинками. Фабрика: запрос → правила → skill → файлы, которые можно запостить.</p>
+  <div class="foot"><span>INST-CAROUSEL</span><span class="num">01 / 05</span></div>
+</section>
+
+<section class="slide" data-slide="2">
+  <div class="eyebrow"><span class="pulse"></span>ВХОД</div>
+  <h2 class="h2">Сначала brief,<br>потом генерация</h2>
+  <div class="bone-card">
+    <div class="label">Правило</div>
+    <p>Пока не ясны тема, формат, язык текста и критерий готовности — агент не собирает слайды.</p>
+  </div>
+  <div class="foot"><span>BRIEF LOCK</span><span class="num">02 / 05</span></div>
+</section>
+
+<section class="slide" data-slide="3">
+  <div class="eyebrow"><span class="pulse"></span>ПАЙПЛАЙН</div>
+  <h2 class="h2">Skill держит процесс</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="idx">01</div>
+      <div class="title">Тема + design.md</div>
+      <div class="desc">Выбрать оформление (Factory) до вёрстки</div>
+    </div>
+    <div class="step">
+      <div class="idx">02</div>
+      <div class="title">HTML в src/</div>
+      <div class="desc">Карусель кодом, 1080×1080, русский текст</div>
+    </div>
+    <div class="step">
+      <div class="idx">03</div>
+      <div class="title">Агентский export</div>
+      <div class="desc">PNG появляются сами — без ручного скрина</div>
+    </div>
+  </div>
+  <div class="foot"><span>STATEFUL SKILL</span><span class="num">03 / 05</span></div>
+</section>
+
+<section class="slide" data-slide="4">
+  <div class="eyebrow"><span class="pulse"></span>OUTPUT</div>
+  <h2 class="h2">В корне — только<br>картинки для поста</h2>
+  <div class="metric-row">
+    <div class="metric">
+      <div class="k">Deliverable</div>
+      <div class="v">slide-01.png</div>
+    </div>
+    <div class="metric">
+      <div class="k">Исходники</div>
+      <div class="v">src/</div>
+    </div>
+  </div>
+  <p class="body">HTML — производство. Instagram забирает PNG.</p>
+  <div class="foot"><span>POSTABLE ASSETS</span><span class="num">04 / 05</span></div>
+</section>
+
+<section class="slide" data-slide="5">
+  <div class="eyebrow"><span class="pulse"></span>УРОВЕНЬ 2</div>
+  <h2 class="h2">Понравилось?<br>Упакуй в skill</h2>
+  <div class="bone-card">
+    <div class="label">Сигнал</div>
+    <p>Эксперимент → повтор → skill. Так отдел растёт без хаоса в чате.</p>
+  </div>
+  <div class="cta">Review → правки → re-export</div>
+  <div class="foot"><span>FACTORY THEME</span><span class="num">05 / 05</span></div>
+</section>
+
+</body>
+</html>
