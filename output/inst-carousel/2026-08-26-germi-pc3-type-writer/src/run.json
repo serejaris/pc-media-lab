@@ -1,0 +1,10 @@
+{
+  "decision": "use",
+  "notes": [
+    "revise: min-height заголовка 380px, meta в поток флекс-колонки"
+  ],
+  "selected": [
+    "anim.mp4"
+  ],
+  "next": "delivered"
+}
