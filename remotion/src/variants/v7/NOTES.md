@@ -1,0 +1,7 @@
+# V7 «Neo-Brutalism»
+
+- Направление: neo-brutalism — громкий высококонтрастный стиль-антагонист вылизанного минимализма: плоские насыщенные цвета, жёсткие чёрные обводки, offset-тени без blur, огромная гротескная типографика, «сырые» геометрические формы ([Nielsen Norman Group](https://www.nngroup.com/articles/neobrutalism/), [Piksellat, тренды 2026](https://piksellat.com/blog/graphic-design-style-in-2026/)).
+- Рабочие параметры из гайдов и генераторов 2025–26: границы 3–4px solid #000, тень `4–8px 8px 0 #000` (zero-blur offset), кремовый фон (#F5F0E1…#FFF5E1), акценты #FFC900 / #FF90E8 / #FF6B6B с чёрным текстом ([neubrutalism.com](https://neubrutalism.com/), [Neubrutalism CSS Generator](https://tool.teamzlab.com/uidesign/neubrutalism-generator/), [Pixso](https://pixso.net/articles/neo-brutalism-design/), [Marc Friedman guide](https://www.marcfriedmanportfolio.com/blog/neo-brutalism-design-guide/)).
+- Типографика: сверхжирный широкий гротеск, постерный стек строк разной ширины; Archivo Black и Anton без кириллицы (проверено в @remotion/google-fonts 4.0.518) → дисплей Unbounded 800/900 (cyrillic есть), тело — Inter 500.
+- Выбранный приём «плашечный постер»: каждая смысловая единица на белой/цветной плашке с рамкой 4px и жёсткой тенью; элементы пружиной «приземляются» на свою тень (перелёт через позицию); декор — крестики, полукруги, зигзаг с обводкой; ни одного градиента и blur.
+- Цветовая связка с брендом PC: крем #F2ECDD + чернила #101010 + фирменный оранжевый #EE6018 + канареечный #FFC900.
